@@ -1,0 +1,20 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "Bertrand GUY",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon",
+    "dev-front": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "nodemon": "^1.18.7",
+    "body-parser": "^1.18.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.3.15",
+    "morgan": "^1.9.0"
+  }
+}
