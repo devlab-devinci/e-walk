@@ -6,8 +6,7 @@
 	"main": "server.js",
 	"scripts": {
 	  "start": "node server.js",
-	  "dev": "nodemon",
-		"build": "webpack --watch"
+	  "dev": "nodemon"
 	},
 	"dependencies": {
     "express": "^4.16.1",

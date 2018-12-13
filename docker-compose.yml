@@ -1,18 +1,27 @@
 version: '3'
 services:
-  node:
-    build: .image/node
-    volumes:
-      - .:/usr/src/app/
-      - /usr/src/app/node_modules
-    ports:
-      - "3000:3000"
-      - "8000:8000"
-    command: npm run build
-    links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - '27017:27017'
+    front:
+        build: front/
+        volumes:
+            - ./front/:/usr/src/app/
+            - /usr/src/app/node_modules
+        ports:
+            - "8080:8080"
+        command: npm run serve
+    node:
+      build: API/.image/node
+      volumes:
+        - ./API/:/usr/src/app/
+        - /usr/src/app/node_modules
+      ports:
+        - "3000:3000"
+      command: npm run dev
+      links:
+        - mongo
+    mongo:
+      container_name: mongo
+      image: mongo
+      ports:
+        - '27017:27017'
+      volumes:
+        - /data/mongodb/db:/data/db
