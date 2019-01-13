@@ -1,8 +1,28 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from './App.vue'
+import Admin from './components/Admin'
+import Vitrine from './components/HelloWorld'
 
-Vue.config.productionTip = false
+const Bar = { template: '<div>bar</div>' }
 
-new Vue({
+Vue.use(VueRouter)
+// Vue.config.productionTip = false
+
+const routes = [
+  { path: '/admin', component: Admin },
+  { path: '/', component: Vitrine },
+  { path: '*', redirect: '/' }
+];
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+});
+
+const app = new Vue({
+  el: '#app',
+  router,
   render: h => h(App),
+  components: { App }
 }).$mount('#app')
