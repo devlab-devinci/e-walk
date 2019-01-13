@@ -5,7 +5,7 @@
 			<file-upload v-model="files" post-action="/">Upload file</file-upload>
 		</header>
 		<div id="result">
-			<li v-for="file in files">
+			<li v-for="file in files" v-if="files.lenght < 0">
 				{{ file.name }}
 			</li>
 			<li>jeune_femme : {{ jeune_femme }} </li>
