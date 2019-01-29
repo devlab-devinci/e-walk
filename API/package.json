@@ -11,8 +11,8 @@
 	"_moduleAliases": {
 		"@root": ".",
 		"@ApiRoot": "./",
-		"@ApiModels":"./app/models",
-		"@ApiAPI":"./config/app.js",
+		"@ApiModels": "./app/models",
+		"@ApiAPI": "./config/app.js",
 		"@config": "./config/index.js"
 	},
 	"dependencies": {

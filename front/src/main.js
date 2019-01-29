@@ -3,10 +3,12 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Admin from './components/Admin'
 import Vitrine from './components/HelloWorld'
+import ImageUploader from 'vue-image-upload-resize'
 
 const Bar = { template: '<div>bar</div>' }
 
 Vue.use(VueRouter)
+Vue.use(ImageUploader);
 // Vue.config.productionTip = false
 
 const routes = [
