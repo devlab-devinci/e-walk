@@ -1,7 +1,7 @@
 <template>
+<body class="landing">
   <div id="page-wrapper">
 	<!-- Header -->
-    
 		<header id="header" class="alt">
 			<h1><a href="index.html">Spectral</a></h1>
 			<nav id="nav">
@@ -142,7 +142,7 @@
 				<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 			</ul>
 		</footer>
-	</div>
+	</div></body>
 </template>
 
 <script>
