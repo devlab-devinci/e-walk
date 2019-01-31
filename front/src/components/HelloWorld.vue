@@ -1,6 +1,7 @@
 <template>
   <div id="page-wrapper">
 	<!-- Header -->
+    
 		<header id="header" class="alt">
 			<h1><a href="index.html">Spectral</a></h1>
 			<nav id="nav">
@@ -162,10 +163,7 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
 a {
   color: #42b983;
 }

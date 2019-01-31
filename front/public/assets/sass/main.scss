@@ -1,98 +1,30 @@
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
-@import 'libs/vendor';
-@import 'libs/breakpoints';
-@import 'libs/html-grid';
 @import 'font-awesome.min.css';
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic');
 
 /*
 	Spectral by HTML5 UP
-	html5up.net | @ajlkn
+	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-// Breakpoints.
+	@import 'libs/skel';
 
-	@include breakpoints((
-		xlarge:   ( 1281px,  1680px ),
-		large:    ( 981px,   1280px ),
-		medium:   ( 737px,   980px  ),
-		small:    ( 481px,   736px  ),
-		xsmall:   ( null,    480px  ),
+	@include skel-breakpoints((
+		xlarge: '(max-width: 1680px)',
+		large: '(max-width: 1280px)',
+		medium: '(max-width: 980px)',
+		small: '(max-width: 736px)',
+		xsmall: '(max-width: 480px)'
 	));
 
-// Reset.
-// Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
-
-	html, body, div, span, applet, object,
-	iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
-	pre, a, abbr, acronym, address, big, cite,
-	code, del, dfn, em, img, ins, kbd, q, s, samp,
-	small, strike, strong, sub, sup, tt, var, b,
-	u, i, center, dl, dt, dd, ol, ul, li, fieldset,
-	form, label, legend, table, caption, tbody,
-	tfoot, thead, tr, th, td, article, aside,
-	canvas, details, embed, figure, figcaption,
-	footer, header, hgroup, menu, nav, output, ruby,
-	section, summary, time, mark, audio, video {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline;
-	}
-
-	article, aside, details, figcaption, figure,
-	footer, header, hgroup, menu, nav, section {
-		display: block;
-	}
-
-	body {
-		line-height: 1;
-	}
-
-	ol, ul {
-		list-style:none;
-	}
-
-	blockquote,	q {
-		quotes: none;
-
-		&:before,
-		&:after {
-			content: '';
-			content: none;
-		}
-	}
-
-	table {
-		border-collapse: collapse;
-		border-spacing: 0;
-	}
-
-	body {
-		-webkit-text-size-adjust: none;
-	}
-
-	mark {
-		background-color: transparent;
-		color: inherit;
-	}
-
-	input::-moz-focus-inner {
-		border: 0;
-		padding: 0;
-	}
-
-	input, select, textarea {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-	}
+	@include skel-layout((
+		reset: 'full',
+		boxModel: 'border',
+		grid: ( gutters: 1.5em )
+	));
 
 /* Basic */
 
@@ -100,27 +32,15 @@
 		width: device-width;
 	}
 
-	// Set box model to border-box.
-	// Based on css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
-		html {
-			box-sizing: border-box;
-		}
-
-		*, *:before, *:after {
-			box-sizing: inherit;
-		}
-
 	body {
 		background: _palette(bg);
 
-		// Stops initial animations until page loads.
-			&.is-preload {
-				*, *:before, *:after {
-					@include vendor('animation', 'none !important');
-					@include vendor('transition', 'none !important');
-				}
+		&.is-loading {
+			*, *:before, *:after {
+				@include vendor('animation', 'none !important');
+				@include vendor('transition', 'none !important');
 			}
-
+		}
 	}
 
 	body, input, select, textarea {
@@ -131,15 +51,15 @@
 		letter-spacing: _size(letter-spacing);
 		line-height: 1.65em;
 
-		@include breakpoint('<=xlarge') {
+		@include breakpoint(xlarge) {
 			font-size: 13pt;
 		}
 
-		@include breakpoint('<=large') {
+		@include breakpoint(large) {
 			font-size: 12pt;
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			font-size: 11pt;
 			letter-spacing: _size(letter-spacing) * 0.5;
 		}
@@ -187,7 +107,7 @@
 		font-size: 1.35em;
 		line-height: 1.75em;
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			font-size: 1.1em;
 			line-height: 1.65em;
 		}
@@ -197,7 +117,7 @@
 		font-size: 1.15em;
 		line-height: 1.75em;
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			font-size: 1em;
 			line-height: 1.65em;
 		}
@@ -283,32 +203,6 @@
 		text-align: right;
 	}
 
-/* Row */
-
-	.row {
-		@include html-grid(1.5em);
-
-		@include breakpoint('<=xlarge') {
-			@include html-grid(1.5em, 'xlarge');
-		}
-
-		@include breakpoint('<=large') {
-			@include html-grid(1.5em, 'large');
-		}
-
-		@include breakpoint('<=medium') {
-			@include html-grid(1.5em, 'medium');
-		}
-
-		@include breakpoint('<=small') {
-			@include html-grid(1.5em, 'small');
-		}
-
-		@include breakpoint('<=xsmall') {
-			@include html-grid(1.5em, 'xsmall');
-		}
-	}
-
 /* Section/Article */
 
 	section, article {
@@ -358,12 +252,12 @@
 				top: 0;
 			}
 
-			@include breakpoint('<=small') {
+			@include breakpoint(small) {
 				margin: 0 0 _size(element-margin) 0;
 			}
 		}
 
-		@include breakpoint('<=medium') {
+		@include breakpoint(medium) {
 			br {
 				display: none;
 			}
@@ -390,7 +284,7 @@
 	select,
 	textarea {
 		@include vendor('appearance', 'none');
-		background-color: _palette(border-bg);
+		background: _palette(border-bg);
 		border-radius: 3px;
 		border: none;
 		color: inherit;
@@ -409,21 +303,26 @@
 		}
 	}
 
-	select {
-		background-size: 1.25em;
-		background-repeat: no-repeat;
-		background-position: calc(100% - 1em) center;
-		height: _size(element-height);
-		padding-right: _size(element-height);
-		text-overflow: ellipsis;
+	.select-wrapper {
+		@include icon;
+		display: block;
+		position: relative;
 
-		&:focus {
-			&::-ms-value {
-				background-color: transparent;
-			}
+		&:before {
+			@include vendor('pointer-events', 'none');
+			color: _palette(border);
+			content: '\f078';
+			display: block;
+			height: _size(element-height);
+			line-height: _size(element-height);
+			position: absolute;
+			right: 0;
+			text-align: center;
+			top: 0;
+			width: _size(element-height);
 		}
 
-		&::-ms-expand {
+		select::-ms-expand {
 			display: none;
 		}
 	}
@@ -526,6 +425,11 @@
 		opacity: 1.0;
 	}
 
+	.formerize-placeholder {
+		color: _palette(fg-light) !important;
+		opacity: 1.0;
+	}
+
 /* Box */
 
 	.box {
@@ -575,7 +479,7 @@
 				font-size: 1.5em;
 			}
 
-			@include breakpoint('<=small') {
+			@include breakpoint(small) {
 				font-size: 1em;
 			}
 		}
@@ -673,101 +577,136 @@
 				}
 			}
 		}
-	}
 
-	dl {
-		margin: 0 0 _size(element-margin) 0;
-	}
-
-/* Actions */
-
-	ul.actions {
-		@include vendor('display', 'flex');
-		cursor: default;
-		list-style: none;
-		margin-left: (_size(element-margin) * -0.5);
-		padding-left: 0;
-
-		li {
-			padding: 0 0 0 (_size(element-margin) * 0.5);
-			vertical-align: middle;
-		}
-
-		&.special {
-			@include vendor('justify-content', 'center');
-			width: 100%;
-			margin-left: 0;
+		&.icons {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
 
 			li {
-				&:first-child {
-					padding-left: 0;
-				}
-			}
-		}
+				display: inline-block;
+				padding: 0 1em 0 0;
 
-		&.stacked {
-			@include vendor('flex-direction', 'column');
-			margin-left: 0;
-
-			li {
-				padding: (_size(element-margin) * 0.5) 0 0 0;
-
-				&:first-child {
-					padding-top: 0;
-				}
-			}
-		}
-
-		&.fit {
-			width: calc(100% + #{_size(element-margin) * 0.5});
-
-			li {
-				@include vendor('flex-grow', '1');
-				@include vendor('flex-shrink', '1');
-				width: 100%;
-
-				> * {
-					width: 100%;
+				&:last-child {
+					padding-right: 0 !important;
 				}
 			}
 
-			&.stacked {
-				width: 100%;
-			}
-		}
-
-		@include breakpoint('<=xsmall') {
-			&:not(.fixed) {
-				@include vendor('flex-direction', 'column');
-				margin-left: 0;
-				width: 100% !important;
+			&.major {
+				padding: 1em 0;
 
 				li {
-					@include vendor('flex-grow', '1');
-					@include vendor('flex-shrink', '1');
-					padding: (_size(element-margin) * 0.5) 0 0 0;
-					text-align: center;
-					width: 100%;
+					padding-right: 3.5em;
 
-					> * {
-						width: 100%;
+					@include breakpoint(small) {
+						padding: 0 1em !important;
 					}
+				}
+			}
+		}
+
+		&.actions {
+			cursor: default;
+			list-style: none;
+			padding-left: 0;
+
+			li {
+				display: inline-block;
+				padding: 0 (_size(element-margin) * 0.75) 0 0;
+				vertical-align: middle;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+
+			&.small {
+				li {
+					padding: 0 (_size(element-margin) * 0.375) 0 0;
+				}
+			}
+
+			&.vertical {
+				li {
+					display: block;
+					padding: (_size(element-margin) * 0.75) 0 0 0;
 
 					&:first-child {
 						padding-top: 0;
 					}
 
-					input[type="submit"],
-					input[type="reset"],
-					input[type="button"],
-					button,
-					.button {
+					> * {
+						margin-bottom: 0;
+					}
+				}
+
+				&.small {
+					li {
+						padding: (_size(element-margin) * 0.375) 0 0 0;
+
+						&:first-child {
+							padding-top: 0;
+						}
+					}
+				}
+			}
+
+			&.fit {
+				display: table;
+				margin-left: (_size(element-margin) * -0.75);
+				padding: 0;
+				table-layout: fixed;
+				width: calc(100% + #{(_size(element-margin) * 0.75)});
+
+				li {
+					display: table-cell;
+					padding: 0 0 0 (_size(element-margin) * 0.75);
+
+					> * {
+						margin-bottom: 0;
+					}
+				}
+
+				&.small {
+					margin-left: (_size(element-margin) * -0.375);
+					width: calc(100% + #{(_size(element-margin) * 0.375)});
+
+					li {
+						padding: 0 0 0 (_size(element-margin) * 0.375);
+					}
+				}
+			}
+
+			@include breakpoint(small) {
+				li {
+					display: block;
+					padding: (_size(element-margin) * 0.5) 0 0 0;
+					text-align: center;
+					width: 100%;
+
+					&:first-child {
+						padding-top: 0;
+					}
+
+					> * {
+						margin: 0 auto !important;
+						max-width: 30em;
 						width: 100%;
 
 						&.icon {
 							&:before {
-								margin-left: -0.5em;
+								margin-left: -1em;
 							}
+						}
+					}
+				}
+
+				&.small {
+					li {
+						padding: (_size(element-margin) * 0.25) 0 0 0;
+
+						&:first-child {
+							padding-top: 0;
 						}
 					}
 				}
@@ -775,33 +714,8 @@
 		}
 	}
 
-/* Icons */
-
-	ul.icons {
-		cursor: default;
-		list-style: none;
-		padding-left: 0;
-
-		li {
-			display: inline-block;
-			padding: 0 1em 0 0;
-
-			&:last-child {
-				padding-right: 0 !important;
-			}
-		}
-
-		&.major {
-			padding: 1em 0;
-
-			li {
-				padding-right: 3.5em;
-
-				@include breakpoint('<=small') {
-					padding: 0 1em !important;
-				}
-			}
-		}
+	dl {
+		margin: 0 0 _size(element-margin) 0;
 	}
 
 /* Table */
@@ -901,7 +815,6 @@
 		height: 3.125em;
 		letter-spacing: _size(letter-spacing-alt);
 		line-height: 3.125em;
-		max-width: 30em;
 		padding: 0 2.75em;
 		text-align: center;
 		text-decoration: none;
@@ -925,6 +838,8 @@
 		}
 
 		&.fit {
+			display: block;
+			margin: 0 0 (_size(element-margin) * 0.5) 0;
 			width: 100%;
 		}
 
@@ -932,11 +847,11 @@
 			font-size: 0.8em;
 		}
 
-		&.large {
+		&.big {
 			font-size: 1.35em;
 		}
 
-		&.primary {
+		&.special {
 			background-color: _palette(accent6, bg);
 			box-shadow: none !important;
 			color: _palette(accent6, fg-bold) !important;
@@ -956,7 +871,7 @@
 			opacity: 0.25;
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			height: 3.75em;
 			line-height: 3.75em;
 		}
@@ -1012,7 +927,7 @@
 				border-bottom-left-radius: 3px;
 			}
 
-			@include breakpoint('<=medium') {
+			@include breakpoint(medium) {
 				@include padding(3em, 2em);
 				text-align: center;
 
@@ -1024,7 +939,7 @@
 				}
 			}
 
-			@include breakpoint('<=small') {
+			@include breakpoint(small) {
 				@include padding(3em, 0);
 				background-color: transparent !important;
 				border-top: solid 2px _palette(border);
@@ -1073,7 +988,7 @@
 			}
 		}
 
-		@include breakpoint('<=large') {
+		@include breakpoint(large) {
 			.image {
 				width: 45%;
 			}
@@ -1083,7 +998,7 @@
 			}
 		}
 
-		@include breakpoint('<=medium') {
+		@include breakpoint(medium) {
 			display: block;
 
 			br {
@@ -1102,7 +1017,7 @@
 			}
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			.content {
 				@include padding(3em, 2em);
 			}
@@ -1166,15 +1081,12 @@
 			input[type="email"],
 			select,
 			textarea {
-				background-color: _palette($p, border-bg);
+				background: _palette($p, border-bg);
 			}
 
-			select {
-				background-image: svg-url("<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'><path d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='#{_palette($p, border)}' /></svg>");
-
-				option {
-					color: _palette($p, fg-bold);
-					background: _palette($p, bg);
+			.select-wrapper {
+				&:before {
+					color: _palette($p, border);
 				}
 			}
 
@@ -1293,7 +1205,7 @@
 
 			.features {
 				li {
-					@include breakpoint('<=small') {
+					@include breakpoint(small) {
 						border-top-color: _palette($p, border);
 					}
 				}
@@ -1308,11 +1220,11 @@
 			width: 60em;
 			margin: 0 auto;
 
-			@include breakpoint('<=large') {
+			@include breakpoint(large) {
 				width: 90%;
 			}
 
-			@include breakpoint('<=medium') {
+			@include breakpoint(medium) {
 				width: 100%;
 			}
 		}
@@ -1341,11 +1253,11 @@
 			@include wrapper(accent7);
 		}
 
-		@include breakpoint('<=medium') {
+		@include breakpoint(medium) {
 			@include padding(4em, 3em);
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			@include padding(3em, 2em);
 		}
 	}
@@ -1412,7 +1324,7 @@
 					text-decoration: none;
 					text-transform: uppercase;
 
-					@include breakpoint('<=small') {
+					@include breakpoint(small) {
 						line-height: 3em;
 					}
 				}
@@ -1434,7 +1346,7 @@
 			width: 7em;
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			padding: 3em 1.5em;
 		}
 	}
@@ -1480,7 +1392,7 @@
 				height: inherit;
 				line-height: inherit;
 
-				@include breakpoint('<=small') {
+				@include breakpoint(small) {
 					font-size: 0.8em;
 				}
 			}
@@ -1527,7 +1439,7 @@
 								width: 2em;
 							}
 
-							@include breakpoint('<=small') {
+							@include breakpoint(small) {
 								padding: 0 1.5em;
 
 								span {
@@ -1536,7 +1448,7 @@
 							}
 						}
 
-						@include breakpoint('<=small') {
+						@include breakpoint(small) {
 							padding: 0 0 0 1.5em;
 						}
 					}
@@ -1664,7 +1576,7 @@
 			opacity: 0;
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			@include padding(7em, 3em);
 			height: auto;
 			min-height: 0;
@@ -1683,7 +1595,7 @@
 		}
 	}
 
-	body.is-preload {
+	body.is-loading {
 		#banner {
 			h2 {
 				@include vendor('transform', 'scale(0.95)');
@@ -1727,7 +1639,7 @@
 				width: 30%;
 			}
 
-			@include breakpoint('<=medium') {
+			@include breakpoint(medium) {
 				display: block;
 				text-align: center;
 
@@ -1744,7 +1656,7 @@
 				}
 			}
 
-			@include breakpoint('<=small') {
+			@include breakpoint(small) {
 				.actions {
 					max-width: none;
 				}
@@ -1780,19 +1692,19 @@
 				}
 			}
 
-			@include breakpoint('<=xlarge') {
+			@include breakpoint(xlarge) {
 				@include padding(10em, 0);
 			}
 
-			@include breakpoint('<=large') {
+			@include breakpoint(large) {
 				@include padding(8em, 3em);
 			}
 
-			@include breakpoint('<=medium') {
+			@include breakpoint(medium) {
 				@include padding(10em, 3em);
 			}
 
-			@include breakpoint('<=small') {
+			@include breakpoint(small) {
 				@include padding(5em, 3em);
 
 				h2 {
@@ -1859,7 +1771,7 @@
 					}
 				}
 
-				@include breakpoint('<=xsmall') {
+				@include breakpoint(xsmall) {
 					border: 0;
 					display: block;
 					line-height: 1.65em;
@@ -1869,11 +1781,11 @@
 			}
 		}
 
-		@include breakpoint('<=medium') {
+		@include breakpoint(medium) {
 			@include padding(4em, 3em);
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoint(small) {
 			@include padding(3em, 2em);
 		}
 	}
