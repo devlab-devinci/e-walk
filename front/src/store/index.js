@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 const axios = require('axios');
+const pathApi = "http://localhost:3000"
 
 Vue.use(Vuex)
 
@@ -11,7 +12,7 @@ export default new Vuex.Store({
 	},
 	actions: {
 		login (store, data) {
-			axios.post('http://localhost:3000/api/v1/auth', {
+			axios.post( pathApi + '/api/v1/auth', {
 				username: data.username,
 				password: data.password
 			})
@@ -20,6 +21,19 @@ export default new Vuex.Store({
 			})
 			.catch(function (error) {
 				console.log(error);
+			});
+		},
+		isAuth (store) {
+			//if(typeof(store.token) == 'undefined') return false
+			if (store.token == '') return false
+			axios.post( pathApi + '/api/v1/isauth', {
+				token: store.token
+			})
+			.then(function (response) {
+				return response.success
+			})
+			.catch(function () {
+				return false
 			});
 		}
 	},

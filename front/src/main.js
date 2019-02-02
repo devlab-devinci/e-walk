@@ -11,9 +11,18 @@ import store from './store'
 Vue.use(VueRouter)
 // Vue.config.productionTip = false
 
+function requireAuth (to, from, next) {
+  if (!store.dispatch('isAuth')) next()
+  next({ path: '/connection' })
+}
+
 const routes = [
   { path: '/connection', component: Connection },
-  { path: '/admin', component: Admin },
+  {
+    path: '/admin', 
+    component: Admin,
+    beforeEnter: requireAuth
+  },
   { path: '/', component: Vitrine },
   { path: '*', redirect: '/' }
 ];
@@ -23,6 +32,7 @@ const router = new VueRouter({
   mode: 'history'
 });
 
+// eslint-disable-next-line
 const app = new Vue({
   el: '#app',
   router,
