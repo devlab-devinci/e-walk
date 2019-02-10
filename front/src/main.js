@@ -5,10 +5,12 @@ import Admin from './components/Admin'
 import Vitrine from './components/HelloWorld'
 import Connection from './components/Connection'
 import store from './store'
+import ImageUploader from 'vue-image-upload-resize'
 
 //const Bar = { template: '<div>bar</div>' }
 
 Vue.use(VueRouter)
+Vue.use(ImageUploader);
 // Vue.config.productionTip = false
 
 function requireAuth (to, from, next) {

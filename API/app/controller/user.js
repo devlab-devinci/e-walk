@@ -1,6 +1,7 @@
 const controller = {}
 
 controller.signup = (User) => (req, res) => {
+  //res.json(req.body)
   const username = req.body.username
   const password = req.body.password
   const email = req.body.email
