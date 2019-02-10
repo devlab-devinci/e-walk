@@ -1,10 +1,11 @@
 <template>
-  	<div id="page-wrapper">
+	<div id="page-wrapper">
 		<header id="header">
 			<h1>Admin</h1>
 			<file-upload v-model="files" post-action="/">Upload file</file-upload>
 		</header>
 		<div id="result">
+			<!-- eslint-disable-next-line -->
 			<li v-for="file in files" v-if="files.lenght < 0">
 				{{ file.name }}
 			</li>
@@ -20,15 +21,15 @@
 import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js'
 export default {
 	components: {
-    	FileUpload,
-  	},
-  	data() {
+		FileUpload,
+	},
+	data() {
 		return {
 			files: [],
-			jeune_femme: (1 - (Math.random() * 1)).toFixed(3),
-			jeune_homme: (1 - (Math.random() * 1)).toFixed(3),
-			mature_homme: (Math.random() * 1).toFixed(3),
-			other: (Math.random() * 1).toFixed(3),
+			jeune_femme: null,//(1 - (Math.random() * 1)).toFixed(3),
+			jeune_homme: null,//(1 - (Math.random() * 1)).toFixed(3),
+			mature_homme: null,//(Math.random() * 1).toFixed(3),
+			other: null//(Math.random() * 1).toFixed(3),
 
 		}
 	},

@@ -9,7 +9,7 @@ services:
             - "8080:8080"
         command: npm run serve
     node:
-      build: API/.image/node
+      build: API/
       volumes:
         - ./API/:/usr/src/app/
         - /usr/src/app/node_modules
