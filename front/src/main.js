@@ -12,13 +12,17 @@ Vue.use(VueRouter)
 // Vue.config.productionTip = false
 
 function requireAuth (to, from, next) {
-  if (!store.dispatch('isAuth')) next()
-  next({ path: '/connection' })
+  if (store.getters.isAuth){
+    next()
+  }else {
+    next({ path: '/connection' })
+  }
 }
 
 const routes = [
   { path: '/connection', component: Connection },
   {
+    name: 'admin',
     path: '/admin', 
     component: Admin,
     beforeEnter: requireAuth

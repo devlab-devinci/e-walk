@@ -12,10 +12,8 @@ controller.login = User => (req, res) => {
           const token = jwt.sign({ user }, config.secret)
 
           user.token = token
-          user.save(error => {
-            if (error) res.json({ success: false, message: error })
-          })
-          res.json({ success: true, message: 'Token granted', token, user: user })
+          user.save()
+          return res.json({ success: true, message: 'Token granted', token, user: user })
         } else {
           res.json({ success: false, message: 'Authentification failed: wrong password' })
         }

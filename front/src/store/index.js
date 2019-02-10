@@ -20,7 +20,6 @@ export default new Vuex.Store({
 				store.commit('setToken', response.data.token)
 			})
 			.catch(function (error) {
-				console.log(error);
 			});
 		},
 		isAuth (store) {
@@ -30,15 +29,20 @@ export default new Vuex.Store({
 				token: store.token
 			})
 			.then(function (response) {
-				return response.success
+				store.commit('setAuth', response.data.token)
 			})
 			.catch(function () {
-				return false
 			});
 		}
 	},
 	mutations: { 
-		setToken(state, token){ state.token = token}
+		setToken(state, token) {
+			state.token = token
+			state.isAuth = true
+		},
+		setAuth(state, data) {
+			state.isAuth = data
+		}
 	},
 	getters: {
 		isAuth: state => {

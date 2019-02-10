@@ -3,8 +3,10 @@
 		<div>
 			<input type="text" v-model="username">
 			<input type="password" v-model="password">
-			<button v-on:click="login({username, password})">Submit</button>
+			<button v-on:click="login()">Submit</button>
 		</div>
+
+		<router-link to="/admin">Go to Admin</router-link>
 	</div>
 </template>
 
@@ -23,9 +25,16 @@ export default {
     	])
 	},
 	methods: {
-		...mapActions([
-			'login'
-		])
+		login: function() {
+			let data = {
+				username: this.username,
+				password: this.password,
+			};
+			this.$store
+				.dispatch("login", data)
+				.then(() => this.$router.push("admin"))
+				.catch(err => console.log(err));
+		}
 	}
 }
 </script>

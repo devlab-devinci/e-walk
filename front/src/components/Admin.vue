@@ -26,10 +26,10 @@ export default {
 	data() {
 		return {
 			files: [],
-			jeune_femme: (1 - (Math.random() * 1)).toFixed(3),
-			jeune_homme: (1 - (Math.random() * 1)).toFixed(3),
-			mature_homme: (Math.random() * 1).toFixed(3),
-			other: (Math.random() * 1).toFixed(3),
+			jeune_femme: null,//(1 - (Math.random() * 1)).toFixed(3),
+			jeune_homme: null,//(1 - (Math.random() * 1)).toFixed(3),
+			mature_homme: null,//(Math.random() * 1).toFixed(3),
+			other: null//(Math.random() * 1).toFixed(3),
 
 		}
 	},
