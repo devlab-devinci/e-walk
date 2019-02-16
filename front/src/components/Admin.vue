@@ -43,10 +43,6 @@
 			<li v-for="file in files" v-if="files.lenght < 0">
 				{{ file.name }}
 			</li>
-			<li>jeune_femme : {{ jeune_femme }} </li>
-			<li>jeune_homme : {{ jeune_homme }} </li>
-			<li>mature_homme : {{ mature_homme }} </li>
-			<li>--other-- : {{ other }} </li>
 		</div>
 	</div>
 </template>
@@ -62,7 +58,7 @@ export default {
 			files: [],
 			jeune_femme: null,//(1 - (Math.random() * 1)).toFixed(3),
 			jeune_homme: null,//(1 - (Math.random() * 1)).toFixed(3),
-			mature_homme: null,//(Math.random() * 1).toFixed(3),
+			maturqe_homme: null,//(Math.random() * 1).toFixed(3),
 			other: null,//(Math.random() * 1).toFixed(3),
             msg: "Vue Image Upload and Resize Demo",
             hasImage: false,
