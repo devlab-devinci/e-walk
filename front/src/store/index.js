@@ -8,7 +8,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		isAuth: false,
-		token: ''
+		token: '',
+		pathApi: "http://localhost:3000",
+		imageTesting: [],
+		lastImageTested: null
 	},
 	actions: {
 		login (store, data) {
@@ -23,7 +26,6 @@ export default new Vuex.Store({
 			});
 		},
 		isAuth (store) {
-			//if(typeof(store.token) == 'undefined') return false
 			if (store.token == '') return false
 			axios.post( pathApi + '/api/v1/isauth', {
 				token: store.token
@@ -33,6 +35,21 @@ export default new Vuex.Store({
 			})
 			.catch(function () {
 			});
+		},
+		getImageTesting(store) {
+			axios.post( pathApi + '/api/v1/imagetesting' )
+			.then(function(response){
+				store.commit('setImageTesting', response.data.message)
+			})
+		},
+		getTestImage(store, data) {
+			axios.post( pathApi + '/api/v1/imagetesting/new', {
+				"imageName": data.name,
+				"imageUrl": data.name
+			}).then(function(response){
+				store.commit('setLastImageTested', response.data)
+			}).catch(function () {
+			})
 		}
 	},
 	mutations: { 
@@ -42,11 +59,27 @@ export default new Vuex.Store({
 		},
 		setAuth(state, data) {
 			state.isAuth = data
+		},
+		setImageTesting(state, data) {
+			state.imageTesting = data
+		},
+		setLastImageTested(state, data) {
+			let returnData = "une jeune femme"
+			if(data.message.jeune_homme > data.message.jeune_femme) returnData = "un jeune homme"
+			if(data.message.mature_homme > data.message.jeune_homme) returnData = "un homme de plus de 50 ans"
+			if(data.message.other > data.message.mature_homme) returnData = "? Nous n'avons pas réussi a le définir."
+			state.lastImageTested = returnData
 		}
 	},
 	getters: {
 		isAuth: state => {
 			return state.isAuth
+		},
+		getImageTesting: state => {
+			return state.imageTesting
+		},
+		getLastImageTested: state => {
+			return state.lastImageTested
 		}
 	}
 })

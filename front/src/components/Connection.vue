@@ -7,6 +7,8 @@
 		</div>
 
 		<router-link to="/admin">Go to Admin</router-link>
+		<br>
+		<router-link to="/aquisition">Go to Aquisition</router-link>
 	</div>
 </template>
 

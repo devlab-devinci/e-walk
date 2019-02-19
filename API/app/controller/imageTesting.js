@@ -2,8 +2,6 @@ const controller = {}
 const config = require('@config')
 
 controller.getFiveLastImageTesting = (ImageTesting) => (req, res) => {
-  console.log(ImageTesting)
-  //ImageTesting.find().skip(ImageTesting.count() - 5)
   ImageTesting.find({}, function(err, images) {
     if (err) throw err;
     res.json({ success: true, message: images })

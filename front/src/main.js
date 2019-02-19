@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Admin from './components/Admin'
+import Aquisition from './components/Aquisition'
 import Vitrine from './components/HelloWorld'
 import Connection from './components/Connection'
 import store from './store'
@@ -27,6 +28,12 @@ const routes = [
     name: 'admin',
     path: '/admin', 
     component: Admin,
+    beforeEnter: requireAuth
+  },
+  {
+    name: 'adminAquisition',
+    path: '/aquisition', 
+    component: Aquisition,
     beforeEnter: requireAuth
   },
   { path: '/', component: Vitrine },

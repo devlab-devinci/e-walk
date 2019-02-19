@@ -1,7 +1,7 @@
 <template>
 	<div id="page-wrapper">
 		<header id="header">
-			<h1>Admin</h1>
+			<h1>Aquisition</h1>
     </header>
     <div class="hello">
       <div class="my-8">
@@ -37,6 +37,18 @@
         </image-uploader>
         <button v-if="image != null" v-on:click="testImage">Récupérer les informations</button>
         <div class="info" v-if="result != null">Vous êtes : {{ result }}</div>
+		<div v-if="result != null">
+			Correction
+			<br>
+			<input type="radio" id="one" value="Femme" v-model="picked">
+			<label for="one">Femme</label>
+			<br>
+			<input type="radio" id="two" value="Homme" v-model="picked">
+			<label for="two">Homme</label>
+			<br>
+			<input type="number" placeholder="age">
+			<button>Confirmer</button>
+		</div>
       </div>
     </div>
 	</div>
@@ -99,6 +111,13 @@ li{
   margin-right: auto;
   margin-left: auto;
   padding: 10px;
+  color: black;
+}
+div{
+	color: #fff
+}
+input{
+	color: black;
 }
 </style>
 <style>
