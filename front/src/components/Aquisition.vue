@@ -85,7 +85,7 @@ export default {
     testImage: function (){
       this.$store.dispatch("getTestImage", this.image)
         .then( this.result = this.getLastImageTested )
-			  .catch(err => console.log(err));
+        .catch();
     }
   },
   mounted() {
@@ -93,7 +93,7 @@ export default {
     this.$store
       .dispatch("getImageTesting")
       .then( this.images = this.getImageTesting )
-			.catch(err => console.log(err));
+			.catch();
   }
 }
 </script>
